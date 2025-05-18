@@ -1,0 +1,191 @@
+2025-05-16 23:17:09,303 - INFO - Player stats dataset loaded: 374554 rows, 28 columns.
+2025-05-16 23:17:09,303 - INFO - Game metadata dataset shape: (37459, 9), events dataset shape: (1884740, 8).
+2025-05-16 23:17:09,303 - INFO - Columns in player stats dataset: game_id, player_id, player_name, team_id, team_name, team_acronym, role, win, game_length, champion_name, team_kills, tower_kills, inhibitor_kills, dragon_kills, herald_kills, baron_kills, player_kills, player_deaths, player_assists, total_minions_killed, gold_earned, level, total_damage_dealt, total_damage_dealt_to_champions, total_damage_taken, wards_placed, largest_killing_spree, largest_multi_kill
+2025-05-16 23:17:09,313 - INFO - 
+Preview of player_stats data:
+ game_id  player_id player_name  team_id              team_name team_acronym role   win  game_length champion_name  team_kills  tower_kills  inhibitor_kills  dragon_kills  herald_kills  baron_kills  player_kills  player_deaths  player_assists  total_minions_killed  gold_earned  level  total_damage_dealt  total_damage_dealt_to_champions  total_damage_taken  wards_placed  largest_killing_spree  largest_multi_kill
+      15          0      shanji        0   Legend Esport Gaming          LEG  Top False         1415        Irelia           7            3                0             0             0            0             2              5               1                   179         8530     12               99007                             7923               15326             8                      0                   1
+      15          1       Demon        1 Bilibili Gaming Junior         BLGJ  Top  True         1415      Vladimir          17            8                1             3             1            1             2              3               6                   174         8565     14              100342                            10857               16475            11                      2                   1
+      15          2     yanxuan        0   Legend Esport Gaming          LEG  Bot False         1415        Kai'Sa           7            3                0             0             0            0             2              2               1                   227         9613     12              116407                             7011                5788             9                      0                   1
+2025-05-16 23:17:09,314 - INFO - 
+Preview of game_metadata data:
+ game_id                       date  match_id  tournament_id tournament_name  series_id     series_name  league_id league_name
+       0 2019-09-15 10:17:30.487000         0              0        Playoffs          0 VCS Summer 2019          0         VCS
+       1 2019-09-15 11:18:01.085000         0              0        Playoffs          0 VCS Summer 2019          0         VCS
+       2 2019-09-15 12:11:33.489000         0              0        Playoffs          0 VCS Summer 2019          0         VCS
+2025-05-16 23:17:09,316 - INFO - 
+Preview of game_events data:
+ id  game_id  timestamp  event_type  killer_id  killed_id assisting_player_ids drake_type
+  0        0        229 player_kill       21.0       29.0                 [23]        NaN
+  1        0        289 player_kill       21.0       29.0                 [23]        NaN
+  2        0        499 player_kill       25.0       21.0             [29, 22]        NaN
+2025-05-16 23:17:09,316 - INFO - 
+Descriptions of roles and key statistics:
+2025-05-16 23:17:09,316 - INFO - - Top: Top lane player, often engages in 1v1 duels and lane pushing.
+2025-05-16 23:17:09,316 - INFO - - Jungle: Roams the jungle, controls neutral objectives (dragons, Herald, Baron) and ganks lanes.
+2025-05-16 23:17:09,316 - INFO - - Mid: Mid lane player, often deals high magic damage and can roam to side lanes.
+2025-05-16 23:17:09,316 - INFO - - Bot (ADC): Attack damage carry, focuses on farming minions to scale into late game.
+2025-05-16 23:17:09,316 - INFO - - Support: Assists the ADC, places vision wards, controls vision and protects the team.
+2025-05-16 23:17:09,316 - INFO - 
+Key statistics in the dataset:
+2025-05-16 23:17:09,316 - INFO - - player_kills: Number of enemy champions killed by the player.
+2025-05-16 23:17:09,316 - INFO - - player_assists: Number of enemy kills the player assisted with.
+2025-05-16 23:17:09,316 - INFO - - player_deaths: Number of times the player died.
+2025-05-16 23:17:09,317 - INFO - - wards_placed: Number of vision wards placed by the player.
+2025-05-16 23:17:09,317 - INFO - - gold_earned: Total gold earned by the player in the game.
+2025-05-16 23:17:09,317 - INFO - - total_damage_dealt_to_champions: Damage dealt to enemy champions.
+2025-05-16 23:17:09,317 - INFO - - win: Indicates if the player's team won (1) or lost (0) the game.
+2025-05-16 23:17:09,317 - INFO - 
+Distribution of game outcomes (wins vs losses):
+2025-05-16 23:17:09,319 - INFO - win
+False    187279
+True     187275
+2025-05-16 23:17:11,668 - INFO - Fig. 'eda_stats_by_outcome.png': Distributions of kills, assists, damage, and wards by game outcome.
+2025-05-16 23:17:12,120 - INFO - Heatmap 'correlation_heatmap.png': Correlations between player stats and game length.
+2025-05-16 23:17:16,199 - INFO - Fig. 'norm_stats_win_loss.png': Distributions of Kills/min and Gold/min by game outcome.
+2025-05-16 23:17:16,256 - INFO - Values above the 99th percentile have been capped for key features to reduce outlier effects.
+2025-05-16 23:17:16,896 - INFO - Fig. 'wins_by_league.png': Wins/Losses distribution across leagues.
+2025-05-16 23:17:16,906 - INFO - Derived feature 'KDA' added (kill+assist divided by deaths).
+2025-05-16 23:17:17,249 - INFO - New feature 'player_dragon_kills' added: count of dragons killed by the player.
+2025-05-16 23:17:17,270 - INFO - 
+Missing values per selected feature:
+player_kills                       0
+player_deaths                      0
+player_assists                     0
+total_minions_killed               0
+gold_earned                        0
+level                              0
+total_damage_dealt                 0
+total_damage_dealt_to_champions    0
+total_damage_taken                 0
+wards_placed                       0
+largest_killing_spree              0
+largest_multi_kill                 0
+kills_per_min                      0
+gold_per_min                       0
+damage_to_champ_per_min            0
+player_dragon_kills                0
+2025-05-16 23:17:17,423 - INFO - 
+--- Modeling for role: Top (train=59929, test=14983) ---
+2025-05-16 23:17:25,567 - INFO - Logistic Regression: Acc=0.904, F1=0.904, Best Params={'model__C': 1.0, 'model__penalty': 'l1', 'model__solver': 'liblinear'}
+2025-05-16 23:26:31,539 - INFO - Random Forest: Acc=0.897, F1=0.898, Best Params={'model__max_depth': None, 'model__min_samples_split': 2, 'model__n_estimators': 300}
+2025-05-16 23:27:22,488 - INFO - XGBoost: Acc=0.911, F1=0.912, Best Params={'model__learning_rate': 0.2, 'model__max_depth': 3, 'model__n_estimators': 300, 'model__subsample': 1.0}
+2025-05-16 23:32:09,473 - INFO - MLP Neural Network: Acc=0.899, F1=0.898, Best Params={'model__alpha': 0.001, 'model__hidden_layer_sizes': (100,)}
+2025-05-16 23:32:09,473 - INFO - Best model for Top: XGBoost (F1=0.912)
+2025-05-16 23:32:09,737 - INFO - Confusion matrix for Top saved as 'confusion_matrix_Top.png'.
+2025-05-16 23:32:09,799 - INFO - 
+--- Modeling for role: Jungle (train=59929, test=14983) ---
+2025-05-16 23:32:14,121 - INFO - Logistic Regression: Acc=0.925, F1=0.925, Best Params={'model__C': 0.1, 'model__penalty': 'l2', 'model__solver': 'liblinear'}
+2025-05-16 23:41:04,120 - INFO - Random Forest: Acc=0.917, F1=0.918, Best Params={'model__max_depth': None, 'model__min_samples_split': 2, 'model__n_estimators': 300}
+2025-05-16 23:41:54,825 - INFO - XGBoost: Acc=0.929, F1=0.929, Best Params={'model__learning_rate': 0.2, 'model__max_depth': 3, 'model__n_estimators': 300, 'model__subsample': 0.8}
+2025-05-16 23:47:25,545 - INFO - MLP Neural Network: Acc=0.917, F1=0.917, Best Params={'model__alpha': 0.001, 'model__hidden_layer_sizes': (100,)}
+2025-05-16 23:47:25,545 - INFO - Best model for Jungle: XGBoost (F1=0.929)
+2025-05-16 23:47:25,772 - INFO - Confusion matrix for Jungle saved as 'confusion_matrix_Jungle.png'.
+2025-05-16 23:47:25,843 - INFO - 
+--- Modeling for role: Mid (train=59929, test=14983) ---
+2025-05-16 23:47:30,953 - INFO - Logistic Regression: Acc=0.908, F1=0.908, Best Params={'model__C': 1.0, 'model__penalty': 'l1', 'model__solver': 'liblinear'}
+2025-05-16 23:56:02,651 - INFO - Random Forest: Acc=0.897, F1=0.899, Best Params={'model__max_depth': None, 'model__min_samples_split': 2, 'model__n_estimators': 300}
+2025-05-16 23:56:57,581 - INFO - XGBoost: Acc=0.912, F1=0.912, Best Params={'model__learning_rate': 0.2, 'model__max_depth': 3, 'model__n_estimators': 300, 'model__subsample': 0.8}
+2025-05-17 00:02:38,245 - INFO - MLP Neural Network: Acc=0.902, F1=0.902, Best Params={'model__alpha': 0.001, 'model__hidden_layer_sizes': (100,)}
+2025-05-17 00:02:38,245 - INFO - Best model for Mid: XGBoost (F1=0.912)
+2025-05-17 00:02:38,467 - INFO - Confusion matrix for Mid saved as 'confusion_matrix_Mid.png'.
+2025-05-17 00:02:38,528 - INFO - 
+--- Modeling for role: Bot (train=59926, test=14982) ---
+2025-05-17 00:02:44,427 - INFO - Logistic Regression: Acc=0.923, F1=0.922, Best Params={'model__C': 10.0, 'model__penalty': 'l2', 'model__solver': 'liblinear'}
+2025-05-17 00:11:38,378 - INFO - Random Forest: Acc=0.915, F1=0.915, Best Params={'model__max_depth': None, 'model__min_samples_split': 2, 'model__n_estimators': 300}
+2025-05-17 00:12:30,147 - INFO - XGBoost: Acc=0.924, F1=0.924, Best Params={'model__learning_rate': 0.2, 'model__max_depth': 3, 'model__n_estimators': 300, 'model__subsample': 0.8}
+2025-05-17 00:17:15,246 - INFO - MLP Neural Network: Acc=0.917, F1=0.916, Best Params={'model__alpha': 0.001, 'model__hidden_layer_sizes': (100,)}
+2025-05-17 00:17:15,246 - INFO - Best model for Bot: XGBoost (F1=0.924)
+2025-05-17 00:17:15,487 - INFO - Confusion matrix for Bot saved as 'confusion_matrix_Bot.png'.
+2025-05-17 00:17:15,546 - INFO - 
+--- Modeling for role: Support (train=59928, test=14982) ---
+2025-05-17 00:17:20,305 - INFO - Logistic Regression: Acc=0.928, F1=0.928, Best Params={'model__C': 1.0, 'model__penalty': 'l2', 'model__solver': 'liblinear'}
+2025-05-17 00:25:19,525 - INFO - Random Forest: Acc=0.919, F1=0.919, Best Params={'model__max_depth': None, 'model__min_samples_split': 2, 'model__n_estimators': 300}
+2025-05-17 00:26:07,064 - INFO - XGBoost: Acc=0.930, F1=0.931, Best Params={'model__learning_rate': 0.2, 'model__max_depth': 3, 'model__n_estimators': 300, 'model__subsample': 0.8}
+2025-05-17 00:31:38,550 - INFO - MLP Neural Network: Acc=0.922, F1=0.922, Best Params={'model__alpha': 0.0001, 'model__hidden_layer_sizes': (100,)}
+2025-05-17 00:31:38,550 - INFO - Best model for Support: XGBoost (F1=0.931)
+2025-05-17 00:31:38,800 - INFO - Confusion matrix for Support saved as 'confusion_matrix_Support.png'.
+2025-05-17 00:31:38,800 - INFO - 
+Model performance by role (Accuracy, F1):
+2025-05-17 00:31:38,800 - INFO - Top: Logistic Regression: Acc=0.90, F1=0.90, Random Forest: Acc=0.90, F1=0.90, XGBoost: Acc=0.91, F1=0.91, MLP Neural Network: Acc=0.90, F1=0.90
+2025-05-17 00:31:38,800 - INFO - Jungle: Logistic Regression: Acc=0.93, F1=0.93, Random Forest: Acc=0.92, F1=0.92, XGBoost: Acc=0.93, F1=0.93, MLP Neural Network: Acc=0.92, F1=0.92
+2025-05-17 00:31:38,800 - INFO - Mid: Logistic Regression: Acc=0.91, F1=0.91, Random Forest: Acc=0.90, F1=0.90, XGBoost: Acc=0.91, F1=0.91, MLP Neural Network: Acc=0.90, F1=0.90
+2025-05-17 00:31:38,800 - INFO - Bot: Logistic Regression: Acc=0.92, F1=0.92, Random Forest: Acc=0.92, F1=0.92, XGBoost: Acc=0.92, F1=0.92, MLP Neural Network: Acc=0.92, F1=0.92
+2025-05-17 00:31:38,800 - INFO - Support: Logistic Regression: Acc=0.93, F1=0.93, Random Forest: Acc=0.92, F1=0.92, XGBoost: Acc=0.93, F1=0.93, MLP Neural Network: Acc=0.92, F1=0.92
+2025-05-17 00:31:38,800 - INFO - 
+Example observations:
+2025-05-17 00:31:38,800 - INFO - - Top and Mid roles often have stronger predictive metrics due to high damage and kill stats.
+2025-05-17 00:31:38,800 - INFO - - Support role is generally harder to predict (fewer kills, more team-oriented metrics).
+2025-05-17 00:31:38,800 - INFO - - Jungle performance depends on map objectives; interpretation should consider dragon/baron control.
+2025-05-17 00:31:41,300 - INFO - Learning curve for Logistic Regression saved as 'learning_curve_Logistic_Regression_Top.png'.
+2025-05-17 00:34:20,691 - INFO - Learning curve for Random Forest saved as 'learning_curve_Random_Forest_Top.png'.
+2025-05-17 00:34:24,901 - INFO - Learning curve for XGBoost saved as 'learning_curve_XGBoost_Top.png'.
+2025-05-17 00:37:34,084 - INFO - Learning curve for MLP Neural Network saved as 'learning_curve_MLP_Neural_Network_Top.png'.
+2025-05-17 00:37:34,084 - INFO - Learning curves plotted for each model to assess overfitting/underfitting.
+2025-05-17 00:37:35,269 - INFO - 
+Global SHAP analysis by role:
+2025-05-17 00:37:36,048 - INFO - Top: Top SHAP features = ['gold_per_min', 'player_assists', 'total_minions_killed']
+2025-05-17 00:37:36,893 - INFO - Jungle: Top SHAP features = ['gold_per_min', 'champion_name_Ivern', 'total_minions_killed']
+2025-05-17 00:37:37,648 - INFO - Mid: Top SHAP features = ['gold_per_min', 'player_assists', 'total_minions_killed']
+2025-05-17 00:37:38,364 - INFO - Bot: Top SHAP features = ['gold_per_min', 'champion_name_Karma', 'total_minions_killed']
+2025-05-17 00:37:39,104 - INFO - Support: Top SHAP features = ['champion_name_Milio', 'gold_per_min', 'champion_name_Lulu']
+2025-05-17 00:37:39,105 - INFO - Global SHAP summary plots saved (shap_summary_<Role>.png).
+2025-05-17 00:37:39,105 - INFO - 
+Example of local SHAP explanation:
+2025-05-17 00:37:39,147 - INFO - Predicted win probability for example (Mid) player: 0.725
+2025-05-17 00:37:39,326 - WARNING - Local SHAP waterfall plot failed for Mid: list index out of range
+2025-05-17 00:37:40,232 - INFO - 
+Top 10 players (>= 10 games):
+2025-05-17 00:37:40,232 - INFO - player_name primary_role  num_games  mean_score
+Xpontaneous          Bot         17    0.720602
+      Putin          Top         38    0.697375
+    Nerzhul      Support         34    0.676484
+       Snow          Bot         61    0.676243
+     Rosseu      Support         26    0.673090
+    Wisdomz       Jungle         10    0.650007
+       meân          Bot         14    0.642870
+     Rahkys          Bot         18    0.638902
+    Nallari          Mid         27    0.638896
+      Winzi      Support         13    0.634629
+2025-05-17 00:37:40,232 - INFO - 
+Top 5 players for role Top (>= 10 games):
+2025-05-17 00:37:40,232 - INFO - player_name  num_games  mean_score
+      Putin         38    0.697375
+     Nanaue         42    0.619054
+      Eloha         15    0.616673
+     Topoon        138    0.612326
+   Brayaron         61    0.610662
+2025-05-17 00:37:40,232 - INFO - 
+Top 5 players for role Jungle (>= 10 games):
+2025-05-17 00:37:40,232 - INFO - player_name  num_games  mean_score
+    Wisdomz         10    0.650007
+     sarolu         32    0.625007
+      Yanmo         32    0.625007
+       Juny         32    0.625007
+   Derakhil         31    0.620974
+2025-05-17 00:37:40,232 - INFO - 
+Top 5 players for role Mid (>= 10 games):
+2025-05-17 00:37:40,232 - INFO - player_name  num_games  mean_score
+    Nallari         27    0.638896
+  Jean Mago         26    0.634622
+  sappxire1         16    0.625007
+      Zinie        108    0.615747
+  Strangers         25    0.610007
+2025-05-17 00:37:40,232 - INFO - 
+Top 5 players for role Bot (>= 10 games):
+2025-05-17 00:37:40,232 - INFO -  player_name  num_games  mean_score
+ Xpontaneous         17    0.720602
+        Snow         61    0.676243
+        meân         14    0.642870
+      Rahkys         18    0.638902
+Limitationss         47    0.632992
+2025-05-17 00:37:40,232 - INFO - 
+Top 5 players for role Support (>= 10 games):
+2025-05-17 00:37:40,240 - INFO - player_name  num_games  mean_score
+    Nerzhul         34    0.676484
+     Rosseu         26    0.673090
+      Winzi         13    0.634629
+      Raito         60    0.633347
+       Atat         31    0.620981
+2025-05-17 00:37:40,240 - INFO - Log file created: C:\Users\diego\Documents\Projet_ML_20342\log_20250516_231707.txt
+2025-05-17 00:37:40,240 - INFO - Script completed. All figures saved in 'C:\Users\diego\Documents\Projet_ML_20342\figures'. See log for details.
