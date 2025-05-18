@@ -26,13 +26,15 @@
 
 ## Introduction
 **Ecamania** is a newly formed Esports team focusing on *League of Legends*.  
-With support from the school and an unlimited budget, perhaps to compensate for the rather modest level of the teaching staff, the team aims to recruit the best players in the world to compete and study at **ECAM**.
+
+With support from the school and an unlimited budget, perhaps to compensate for the rather modest level of the teaching staff, the team aims to recruit the best players in the world to compete at **ECAM**.
 
 As students from ECAM’s top-performing Electrical and Computer Engineering program, we were tasked with a data-driven analysis of professional matches to help achieve this goal.
+
 The project has three main objectives:
 
 1. **Match Outcome Prediction**  
-   Build models to determine, based on a single player's in-game statistics from a match, whether that player's team won or lost.
+   Build models to determine based on a single player's in-game statistics from a match, whether that player's team won or lost.
 
 2. **Key Factors Identification**  
    Identify the most important quantifiable variables (in-game stats) that players should focus on to improve their chances of winning.
@@ -61,8 +63,6 @@ If you're not a League of Legends player, some terms and concepts in this report
   A more advanded overview covering game objectives roles and basic strategies.
 
 
-These resources should provide a solid foundation for understanding the concepts and terminology used in this report.
-
 ---
 
 ## Data Understanding
@@ -82,12 +82,6 @@ Each **player-game** record includes:
 * Match outcome (`win` = 1 / `loss` = 0)  
 * Performance stats: kills, deaths, assists, farm (minions), gold earned, damage dealt (total & vs champions), damage taken, wards placed, **team objective** counts (towers, dragons, barons, …) and the player’s champion
 
-Key observations:
-
-* ~10 player entries per match (5 v 5) — matches expectations.  
-* The **`win` variable is balanced** (~50 % wins) as each match yields exactly one winner.  
-* We detected some **outliers** (e.g., extremely high kills/gold in lengthy games) and a few **missing values** which were handled during preprocessing.
-
 ---
 
 ## Exploratory Data Analysis
@@ -103,7 +97,8 @@ Our initial EDA validated that **winning players outperform losing players on ne
 
 During this phase we flagged extreme numeric outliers (e.g., a single 30-kill game) for later treatment ensuring they cannot skew model training.
 
-![Distribution of Wins vs Losses](https://github.com/user-attachments/assets/3c8dbcf4-dc4e-47a7-b009-d2190e3a89b9)
+![distrib](https://github.com/user-attachments/assets/940e1d46-c892-4206-bdf3-26d29467195b)
+
 
 *Figure 1 – Distribution of match outcomes for all player-game instances (green = win, red = loss).*
 
@@ -137,7 +132,9 @@ Key observations:
 These findings reinforce earlier conclusions: **winning players not only perform better overall but also do so more efficiently** relative to time played.
 
 
-![Correlation Heatmap](https://github.com/user-attachments/assets/5d92678b-1337-40fd-a8d2-99b3236d4cbb)
+![correlation](https://github.com/user-attachments/assets/20c8ed2d-6983-4f0a-8b86-18da5213b616)
+
+
 
 
 *Figure 4 – Heatmap of Pearson correlations among key in-game performance variables.*
@@ -196,11 +193,7 @@ We selected the XGBoost model as the final model for every role. To illustrate t
 **[Figure: Confusion matrix for one role's model]**. The confusion matrices for all roles show that most games are correctly classified. The few misclassifications often occur when a player on a losing team had very strong stats (false positive) or a player on a winning team had unusually poor stats (false negative). These cases make intuitive sense as exceptional circumstances can defy the general trend.
 
 
-![confusion_matrix_Top](https://github.com/user-attachments/assets/d307b5da-642d-4dd9-8865-7eff401695f2)
-![confusion_matrix_Support](https://github.com/user-attachments/assets/a7753630-daea-4f8b-9f89-503a77cd2603)
-![confusion_matrix_Mid](https://github.com/user-attachments/assets/f50ad403-26bc-40d3-a1fa-91a1c1f9020a)
-![confusion_matrix_Jungle](https://github.com/user-attachments/assets/1a09d2c8-3330-4e80-be9f-fba621fbbe40)
-![confusion_matrix_Bot](https://github.com/user-attachments/assets/9662e485-954b-4bca-a64f-cb399978c50f)
+![confusion matrices](https://github.com/user-attachments/assets/69085fe7-b9ed-4f44-840c-bcf13f17840a)
 
 
 
@@ -225,11 +218,7 @@ We also set aside a portion of the data as a final test set to evaluate the chos
 
 Finally, by restricting our feature set to meaningful in-game stats and excluding identifiers (like specific player or team names) we reduced the risk of the model over-relying on any one peculiar factor. The misclassifications discussed earlier appeared to be due to legitimate edge cases rather than overfitting errors.
 
-
-![learning_curve_XGBoost_Top](https://github.com/user-attachments/assets/cd93d9e3-d878-424b-a261-05178cfc2b23)
-![learning_curve_Random_Forest_Top](https://github.com/user-attachments/assets/ffbeb946-f366-40de-8866-8323104de2cf)
-![learning_curve_MLP_Neural_Network_Top](https://github.com/user-attachments/assets/dc957bdb-5407-4bd1-9cda-746dc639ed3b)
-![learning_curve_Logistic_Regression_Top](https://github.com/user-attachments/assets/69877b3f-61da-45e2-9705-1e8250224a22)
+![learning curves](https://github.com/user-attachments/assets/e7b69071-6a43-46b1-bce8-da07a0bdb059)
 
 
 *Figure 7 – Learning curves showing F1-score on training and validation sets for each model, using only Top lane players.*
@@ -237,8 +226,8 @@ Finally, by restricting our feature set to meaningful in-game stats and excludin
 **Key interpretations:**
 
 - **Logistic Regression**: Training and validation curves converge indicating low variance and solid generalization. No sign of overfitting.
-- **MLP Neural Network**: Very high training performance but significant gap to validation → clear sign of **overfitting** despite regularization.
-- **Random Forest**: Similar to MLP — training score near perfect but validation stagnates. Model is powerful but overfits slightly.
+- **MLP Neural Network**: Very high training performance but significant gap to validation clear sign of **overfitting** despite regularization.
+- **Random Forest**: Similar to MLP training score near perfect but validation stagnates. Model is powerful but overfits slightly.
 - **XGBoost**: Best trade-off. While training score declines **validation improves with size** showing excellent generalization and regularization.
 
 These curves confirm that **XGBoost strikes the best bias-variance balance** validating its selection as the final model for each role.
@@ -257,11 +246,9 @@ We observed some role-specific differences. In the **Jungle** role the number of
 
 These findings align with common game knowledge. To win, a player should try to get kills and gold without dying and focus on role-specific duties (e.g., junglers securing objectives, supports providing vision). The SHAP analysis thus validated our model and pointed out which areas players can focus on to improve their impact on winning.
 
-![shap_summary_Support](https://github.com/user-attachments/assets/14c35162-789a-438d-b075-1b81725792e3)
-![shap_summary_Mid](https://github.com/user-attachments/assets/8689ed68-7368-4cc1-9b5e-99459b805e7d)
-![shap_summary_Jungle](https://github.com/user-attachments/assets/ab7fd4cf-a11d-41ad-b45d-be1dfd209fee)
-![shap_summary_Bot](https://github.com/user-attachments/assets/d1448562-0153-43b6-a612-ed55779b4b5a)
-![shap_summary_Top](https://github.com/user-attachments/assets/d934cb51-e735-48bb-a61f-b3894f57333d)
+
+![shap values](https://github.com/user-attachments/assets/4d974365-e00e-4466-8a14-806f39137755)
+
 
 *Figure 8 – SHAP summary plots showing the top features influencing win probability predictions for each role.*
 
@@ -340,7 +327,7 @@ A higher score means the player consistently puts up stats that give their team 
 
 ## Conclusion
 
-Our analysis successfully met the objectives. We built accurate predictive models (around **91–93% F1 score**) that confirm a single player's in-game performance can largely determine whether their team wins. Key performance factors were identified: players who **secure kills and assists, avoid deaths, and accumulate gold and farm** give their team a much higher chance of victory. Role-specific contributions (like objective control for junglers and warding for supports) also proved crucial. These insights suggest that training should emphasize these areas. Using the model predictions, we ranked players and highlighted the top talent in each role. These are prime candidates for Ecamania’s recruitment given their consistently high impact on game outcomes.
+Our analysis successfully met the objectives. We built accurate predictive models (around **91–93% F1 score**) that confirm a single player's in-game performance can largely determine whether their team wins. Key performance factors were identified: players who **secure kills and assists, avoid deaths, and accumulate gold and farm** give their team a much higher chance of victory. Role-specific contributions (like objective control for junglers and warding for supports) also proved crucial. These insights suggest that training should emphasize these areas. Using the model predictions we ranked players and highlighted the top talent in each role. These are prime candidates for Ecamania’s recruitment given their consistently high impact on game outcomes.
 
 Lastly, we would like to note that despite the enthusiastic promises made by ECAM leadership, we are still patiently waiting for the arrival of our **unlimited budget** . Which, like some solo queue teammates, seems to have disconnected just before the real game began.
 
