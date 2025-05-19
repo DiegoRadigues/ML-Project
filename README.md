@@ -12,15 +12,71 @@
 **Student ID**: 20342  
 
 ## Table of Contents
-1. [Introduction](#introduction)  
-2. [Data Understanding](#data-understanding)  
-3. [Exploratory Data Analysis](#exploratory-data-analysis)  
-4. [Feature Engineering and Preprocessing](#feature-engineering-and-preprocessing)  
-5. [Modeling and Evaluation per Role](#modeling-and-evaluation-per-role)  
-6. [Overfitting Analysis](#overfitting-analysis)  
-7. [SHAP Feature Importance](#shap-feature-importance)  
-8. [Player Ranking](#player-ranking)  
-9. [Conclusion](#conclusion)  
+1. [How To Run The Project](#how-to-run-the-project)  
+2. [Introduction](#introduction)  
+3. [Data Understanding](#data-understanding)  
+4. [Exploratory Data Analysis](#exploratory-data-analysis)  
+5. [Feature Engineering and Preprocessing](#feature-engineering-and-preprocessing)  
+7. [Modeling and Evaluation per Role](#modeling-and-evaluation-per-role)  
+7. [Overfitting Analysis](#overfitting-analysis)  
+8. [SHAP Feature Importance](#shap-feature-importance)  
+9. [Player Ranking](#player-ranking)  
+10. [Conclusion](#conclusion)
+11. [References](#references)  
+
+---
+
+# How to Run the Project
+
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/DiegoRadigues/ML-Project.git
+cd ML-Project
+```
+
+## 2. Create a Virtual Environment (Optional but Recommended)
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+## 3. Install Required Libraries
+
+Make sure you have `pip` updated and install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## 4. Prepare the Data
+
+Ensure the `data.zip` file is located in the root of the project directory. It should contain:
+
+- `game_players_stats.csv`
+- `game_metadata.csv`
+- `game_events.csv`
+
+These will be extracted automatically when running the script.
+
+## 5. Run the Script
+
+Execute the main script.
+
+```bash
+python Script_v3.py
+```
+
+This will:
+- Generate figures in the `figures/` directory
+- Save logs to a timestamped `.txt` file
+- Print top players by role and overall
+- Save SHAP plots and model diagnostics
+
+
+**Note**: Execution time may exceed 1,5 hour due to GridSearch and SHAP computations. 
 
 ---
 
@@ -330,4 +386,27 @@ A higher score means the player consistently puts up stats that give their team 
 Our analysis successfully met the objectives. We built accurate predictive models (around **91–93% F1 score**) that confirm a single player's in-game performance can largely determine whether their team wins. Key performance factors were identified: players who **secure kills and assists, avoid deaths, and accumulate gold and farm** give their team a much higher chance of victory. Role-specific contributions (like objective control for junglers and warding for supports) also proved crucial. These insights suggest that training should emphasize these areas. Using the model predictions we ranked players and highlighted the top talent in each role. These are prime candidates for Ecamania’s recruitment given their consistently high impact on game outcomes.
 
 Lastly, we would like to note that despite the enthusiastic promises made by ECAM leadership, we are still patiently waiting for the arrival of our **unlimited budget** . Which, like some solo queue teammates, seems to have disconnected just before the real game began.
+
+
+# References 
+
+## Kaggle Courses (Machine Learning, AI, Data)
+- [1] Kaggle, **"Intro to Machine Learning"**, *Kaggle Learn*, [Online]. Available: https://www.kaggle.com/learn/intro-to-machine-learning (accessed May 19, 2025).  
+- [2] Kaggle, **"Intermediate Machine Learning"**, *Kaggle Learn*, [Online]. Available: https://www.kaggle.com/learn/intermediate-machine-learning (accessed May 19, 2025).  
+- [3] Kaggle, **"Feature Engineering"**, *Kaggle Learn*, [Online]. Available: https://www.kaggle.com/learn/feature-engineering (accessed May 19, 2025).  
+- [4] Kaggle, **"Intro to Deep Learning"**, *Kaggle Learn*, [Online]. Available: https://www.kaggle.com/learn/intro-to-deep-learning (accessed May 19, 2025).  
+- [5] Kaggle, **"Data Visualization"**, *Kaggle Learn*, [Online]. Available: https://www.kaggle.com/learn/data-visualization (accessed May 19, 2025).  
+
+
+## Machine Learning Models and Techniques  
+- [11] T. Hastie, R. Tibshirani, and J. Friedman, *The Elements of Statistical Learning*, 2nd ed., Springer, 2009. (logistic regression, ensemble methods)
+- [12] L. Breiman, "Random Forests," *Machine Learning*, vol. 45, no. 1, pp. 5–32, 2001.
+- [13] T. Chen and C. Guestrin, "XGBoost: A Scalable Tree Boosting System," in *Proc. 22nd ACM SIGKDD Int. Conf. on Knowledge Discovery and Data Mining (KDD)*, San Francisco, CA, 2016, pp. 785–794.
+- [14] I. Goodfellow, Y. Bengio, and A. Courville, *Deep Learning*, MIT Press, 2016. (MLP, neural networks)
+- [15] S. M. Lundberg and S.-I. Lee, "A Unified Approach to Interpreting Model Predictions," in *Advances in Neural Information Processing Systems 30 (NeurIPS 2017)*, pp. 4768–4777. (SHAP)
+
+
+## Project Repository
+- [19] D. de Radiguès, "ML-Project: League of Legends Player Performance Analysis," GitHub repository, 2025. [Online]. Available: https://github.com/DiegoRadigues/ML-Project
+
 
